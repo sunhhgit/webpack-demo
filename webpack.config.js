@@ -1,6 +1,7 @@
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MyPlugin = require('./plugin-loader/my-plugin')
 
 module.exports = {
   entry: './src/react.js',// "./src/index",
@@ -24,10 +25,20 @@ module.exports = {
       {
         test: /\.css/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.mobile$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', {
+          loader: './plugin-loader/my-loader',
+          options: {
+            size: 750
+          }
+        }]
       }
     ]
   },
   plugins: [
+    new MyPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"

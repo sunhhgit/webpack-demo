@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import { render } from 'react-dom'
 import './style.css'
+import './style.mobile';
 import loadComponent from './loadComponent'
 
 // const AsyncComp = lazy(() => import('./AsyncComp'))
